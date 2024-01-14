@@ -2,7 +2,6 @@ package com.example.tgid.controller;
 
 
 import com.example.tgid.model.Cliente;
-import com.example.tgid.dto.ClienteListagemDTO;
 import com.example.tgid.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,12 +22,11 @@ public class ClienteController {
     @Autowired
     private ModelMapper modelMapper;
 
+
     @GetMapping
-    public ResponseEntity<List<ClienteListagemDTO>> listarClientes() {
+    public ResponseEntity<List<Cliente>> listarClientes() {
         List<Cliente> clientes = clienteService.listarClientes();
-        List<ClienteListagemDTO> clientesDTO = clientes.stream()
-                .map(p -> modelMapper.map(p, ClienteListagemDTO.class)).toList();
-        return ResponseEntity.ok(clientesDTO);
+        return ResponseEntity.ok(clientes);
     }
 
 }

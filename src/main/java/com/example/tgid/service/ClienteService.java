@@ -15,14 +15,7 @@ public class ClienteService {
     @Autowired
     ClienteRepository clienteRepository;
 
-    @Autowired
-    private ModelMapper modelMapper;
-
     public List<Cliente> listarClientes() {
-        List<Cliente> clientes;
-        clientes = clienteRepository.findAll();
-
-        return clientes;
-
+        return clienteRepository.findAll();
     }
 }
