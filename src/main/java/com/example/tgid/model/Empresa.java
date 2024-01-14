@@ -2,6 +2,8 @@ package com.example.tgid.model;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "empresa")
 public class Empresa {
@@ -12,9 +14,9 @@ public class Empresa {
     @Column(unique = true)
     private String CNPJ;
     private String nome;
-    private Double saldo;
+    private BigDecimal saldo;
 
-    public Empresa(Integer id, String CNPJ, String nome, Double saldo) {
+    public Empresa(Integer id, String CNPJ, String nome, BigDecimal  saldo) {
         this.id = id;
         this.CNPJ = CNPJ;
         this.nome = nome;
@@ -47,11 +49,11 @@ public class Empresa {
         this.nome = nome;
     }
 
-    public Double getSaldo() {
+    public BigDecimal  getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(Double saldo) {
+    public void setSaldo(BigDecimal  saldo) {
         this.saldo = saldo;
     }
 }

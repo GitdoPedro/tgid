@@ -2,17 +2,18 @@ package com.example.tgid.model;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "bilhete")
+@Table(name = "trancacao")
 public class Transacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Boolean deposito;
     private Boolean saque;
-    private double valor;
+    private BigDecimal valor;
     private LocalDateTime dataHora;
     @ManyToOne
     @JoinColumn(name = "empresa_id")
@@ -23,7 +24,7 @@ public class Transacao {
     private Boolean statusConcluido;
 
     public Transacao(Integer id, Boolean deposito, Boolean saque,
-                     double valor, LocalDateTime dataHora, Empresa empresa,
+                     BigDecimal valor, LocalDateTime dataHora, Empresa empresa,
                      Cliente cliente, Boolean statusConcluido) {
         this.id = id;
         this.deposito = deposito;
@@ -61,11 +62,11 @@ public class Transacao {
         this.saque = saque;
     }
 
-    public double getValor() {
+    public BigDecimal  getValor() {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(BigDecimal  valor) {
         this.valor = valor;
     }
 
