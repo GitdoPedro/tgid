@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "b8e046d4-747b-49d4-abf8-81483dbd8e9c",
+		"name": "TGID DESAFIO",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "32328672"
+	},
+	"item": [
+		{
+			"name": "Retorna as empresas cadastrados",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/empresas"
+			},
+			"response": []
+		},
+		{
+			"name": "Retorna os clientes cadastrados",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/clientes"
+			},
+			"response": []
+		},
+		{
+			"name": "Efetua depósito",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"valor\": 100.00,\r\n  \"empresa\": {\r\n    \"id\": 1\r\n  },\r\n  \"cliente\": {\r\n    \"id\": 1\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/transacao/deposito"
+			},
+			"response": []
+		},
+		{
+			"name": "Efetua saque",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"valor\": 100.00,\r\n  \"empresa\": {\r\n    \"id\": 1\r\n  },\r\n  \"cliente\": {\r\n    \"id\": 1\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/transacao/deposito"
+			},
+			"response": []
+		},
+		{
+			"name": "Efetua depósito- BAD REQUEST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"valor\": 100.00,\r\n  \"empresa\": {\r\n    \"id\": 1\r\n  },\r\n  \"cliente\": {\r\n    \"id\": 1\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/transacao/deposito"
+			},
+			"response": []
+		}
+	]
+}
