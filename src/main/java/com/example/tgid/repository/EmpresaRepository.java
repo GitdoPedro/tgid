@@ -1,9 +1,10 @@
 package com.example.tgid.repository;
 
-import com.example.tgid.model.Cliente;
+
+import com.example.tgid.model.Empresa;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ClienteRepository extends JpaRepository<Cliente,Integer> {
+public interface EmpresaRepository extends JpaRepository<Empresa,Integer> {
 }

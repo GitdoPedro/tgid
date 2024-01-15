@@ -1,8 +1,7 @@
 package com.example.tgid.controller;
 
-
-import com.example.tgid.model.Cliente;
-import com.example.tgid.service.ClienteService;
+import com.example.tgid.model.Empresa;
+import com.example.tgid.service.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,19 +10,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-
 @RestController
-@RequestMapping("/api/clientes")
-public class ClienteController {
+@RequestMapping("/api/empresas")
+public class EmpresaController {
 
     @Autowired
-    private ClienteService clienteService;
+    private EmpresaService empresaService;
 
 
     @GetMapping
-    public ResponseEntity<List<Cliente>> listarClientes() {
-        List<Cliente> clientes = clienteService.listarClientes();
-        return ResponseEntity.ok(clientes);
+    public ResponseEntity<List<Empresa>> listarEmpresas() {
+        List<Empresa> empresas = empresaService.listarEmpresas();
+        return ResponseEntity.ok(empresas);
     }
 
 }
