@@ -1,6 +1,7 @@
 package com.example.tgid.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "cliente")
@@ -10,6 +11,7 @@ public class Cliente {
 
     private Integer id;
     @Column(unique = true)
+    @Pattern(regexp = "\\d{11}", message = "CPF deve conter apenas números e ter 11 dígitos")
     private String cpf;
     private String nome;
 

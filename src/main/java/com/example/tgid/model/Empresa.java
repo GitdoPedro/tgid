@@ -1,6 +1,7 @@
 package com.example.tgid.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
 
 import java.math.BigDecimal;
 
@@ -12,6 +13,7 @@ public class Empresa {
 
     private Integer id;
     @Column(unique = true)
+    @Pattern(regexp = "\\d{14}", message = "CNPJ deve conter apenas números e ter 14 dígitos")
     private String CNPJ;
     private String nome;
     private BigDecimal saldo;
