@@ -1,5 +1,6 @@
 package com.example.tgid.service;
 
+import com.example.tgid.helper.Tarifa;
 import com.example.tgid.model.Cliente;
 import com.example.tgid.model.Empresa;
 import com.example.tgid.model.Transacao;
@@ -33,10 +34,12 @@ public class TransacaoService {
                     .body("Depósito não efetuado. Cliente ou Empresa não encontrados");
         }
 
+        Tarifa tarifa = new Tarifa(transacao.getValor());
+
         Transacao transacaoSalva = new Transacao();
         transacaoSalva.setCliente(clienteEncontrado);
         transacaoSalva.setEmpresa(empresaEncontrada);
-        transacaoSalva.setValor(transacao.getValor());
+        transacaoSalva.setValor(tarifa.getValorReajustado());
         transacaoSalva.setDataHora(LocalDateTime.now());
         empresaEncontrada.setSaldo(empresaEncontrada.getSaldo().add(transacaoSalva.getValor()));
 
@@ -62,10 +65,12 @@ public class TransacaoService {
 
         }
 
+        Tarifa tarifa = new Tarifa(transacao.getValor());
+
         Transacao transacaoSalva = new Transacao();
         transacaoSalva.setCliente(clienteEncontrado);
         transacaoSalva.setEmpresa(empresaEncontrada);
-        transacaoSalva.setValor(transacao.getValor().negate());
+        transacaoSalva.setValor(tarifa.getValorReajustado().negate());
         transacaoSalva.setDataHora(LocalDateTime.now());
         empresaEncontrada.setSaldo(empresaEncontrada.getSaldo().add(transacaoSalva.getValor()));
 
