@@ -22,6 +22,8 @@ public class TransacaoService {
     @Autowired
     TransacaoRepository transacaoRepository;
 
+
+
     public ResponseEntity<String> depositar(Transacao transacao) {
         Cliente clienteEncontrado = clienteRepository.getReferenceById(transacao.getCliente().getId());
         Empresa empresaEncontrada = empresaRepository.getReferenceById(transacao.getEmpresa().getId());
@@ -30,10 +32,7 @@ public class TransacaoService {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("Depósito não efetuado. Cliente ou Empresa não encontrados");
         }
-        /*if (empresaEncontrada.getSaldo().compareTo(transacao.getValor()) < 0){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body("Depósito não efetuado. Médico ou Paciente não encontrados");
-        }*/
+
         Transacao transacaoSalva = new Transacao();
         transacaoSalva.setCliente(clienteEncontrado);
         transacaoSalva.setEmpresa(empresaEncontrada);
@@ -43,8 +42,39 @@ public class TransacaoService {
 
         transacaoRepository.save(transacaoSalva);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body("Depósito efetuado"+ transacaoSalva.getValor().toString()+ " "+
+                .body("Depósito efetuado "+ transacaoSalva.getValor().toString()+ " "+
                         "na conta da empresa : "+transacaoSalva.getEmpresa().getNome()+
-                        "pelo cliente: "+transacaoSalva.getCliente().getNome());
+                        " pelo cliente: "+transacaoSalva.getCliente().getNome());
+    }
+
+    public ResponseEntity<String> sacar(Transacao transacao) {
+        Cliente clienteEncontrado = clienteRepository.getReferenceById(transacao.getCliente().getId());
+        Empresa empresaEncontrada = empresaRepository.getReferenceById(transacao.getEmpresa().getId());
+
+        if (clienteEncontrado == null || empresaEncontrada == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("Depósito não efetuado. Cliente ou Empresa não encontrados");
+        }
+
+        if (empresaEncontrada.getSaldo().compareTo(transacao.getValor()) < 0) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("Depósito não efetuado. Saldo insuficiente");
+
+        }
+
+        Transacao transacaoSalva = new Transacao();
+        transacaoSalva.setCliente(clienteEncontrado);
+        transacaoSalva.setEmpresa(empresaEncontrada);
+        transacaoSalva.setValor(transacao.getValor().negate());
+        transacaoSalva.setDataHora(LocalDateTime.now());
+        empresaEncontrada.setSaldo(empresaEncontrada.getSaldo().add(transacaoSalva.getValor()));
+
+        transacaoRepository.save(transacaoSalva);
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("Saque efetuado "+ transacaoSalva.getValor().toString()+ " "+
+                        "na conta da empresa : "+transacaoSalva.getEmpresa().getNome()+
+                        " pelo cliente: "+transacaoSalva.getCliente().getNome());
+
     }
 }

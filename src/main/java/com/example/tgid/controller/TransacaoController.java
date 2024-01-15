@@ -21,12 +21,12 @@ public class TransacaoController {
                                                    @PathVariable String tipo) {
         if ("deposito".equalsIgnoreCase(tipo)) {
             return transacaoService.depositar(transacao);
-        /*} else if ("saque".equalsIgnoreCase(tipo)) {
+        } else if ("saque".equalsIgnoreCase(tipo)) {
             return transacaoService.sacar(transacao);
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Tipo de transação inválido");
-        }*/
+        }
     }
 
-        return null;
-    }}
+
+    }
