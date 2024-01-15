@@ -30,7 +30,11 @@ O Spring Boot é o framework principal que integra essas tecnologias e permite a
 * Implantação de um sistema de backup e recuperação de dados, para evitar perda de informações e garantir a disponibilidade do sistema.
 * Implementação de logs adequados na aplicação, registrando eventos relevantes e informações úteis para fins de depuração, monitoramento e análise de desempenho.
 * Implementação de estruras de DTO, afim de isolar os modelos de banco de dados e melhorar o desacoplamento.  
-  
+
+## Principais Classes
+
+![](./src/classes.png)
+
 
 
    Desenvolvido por:
