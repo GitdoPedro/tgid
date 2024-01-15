@@ -11,8 +11,6 @@ public class Transacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Boolean deposito;
-    private Boolean saque;
     private BigDecimal valor;
     private LocalDateTime dataHora;
     @ManyToOne
@@ -21,19 +19,14 @@ public class Transacao {
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
-    private Boolean statusConcluido;
 
-    public Transacao(Integer id, Boolean deposito, Boolean saque,
-                     BigDecimal valor, LocalDateTime dataHora, Empresa empresa,
-                     Cliente cliente, Boolean statusConcluido) {
+    public Transacao(Integer id, BigDecimal valor, LocalDateTime dataHora,
+                     Empresa empresa, Cliente cliente) {
         this.id = id;
-        this.deposito = deposito;
-        this.saque = saque;
         this.valor = valor;
         this.dataHora = dataHora;
         this.empresa = empresa;
         this.cliente = cliente;
-        this.statusConcluido = statusConcluido;
     }
 
     public Transacao() {}
@@ -44,22 +37,6 @@ public class Transacao {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Boolean getDeposito() {
-        return deposito;
-    }
-
-    public void setDeposito(Boolean deposito) {
-        this.deposito = deposito;
-    }
-
-    public Boolean getSaque() {
-        return saque;
-    }
-
-    public void setSaque(Boolean saque) {
-        this.saque = saque;
     }
 
     public BigDecimal  getValor() {
@@ -94,11 +71,4 @@ public class Transacao {
         this.cliente = cliente;
     }
 
-    public Boolean getStatusConcluido() {
-        return statusConcluido;
-    }
-
-    public void setStatusConcluido(Boolean statusConcluido) {
-        this.statusConcluido = statusConcluido;
-    }
 }
